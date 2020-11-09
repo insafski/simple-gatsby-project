@@ -1,7 +1,20 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import React from "react";
+import { ApolloProvider } from "@apollo/client";
+import PropTypes from "prop-types";
 
-// You can delete this file if you're not using it
+import client from "./src/configs/client";
+import { Layout } from "./src/components/Layout";
+
+function wrapPageElement({ element }) {
+    return (
+        <ApolloProvider client={client}>
+            <Layout>{element}</Layout>
+        </ApolloProvider>
+    );
+}
+
+wrapPageElement.propTypes = {
+    element: PropTypes.node,
+};
+
+export { wrapPageElement };
